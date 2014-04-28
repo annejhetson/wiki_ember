@@ -9,7 +9,7 @@ class ContactsController <ApplicationController
     if @contact.save
       render :json => @contact, :status => 201
     else
-      render :json => @contact.errors, :status => 422
+      render :json => { :errors => @contact.errors }, :status => 422
     end
   end
 
@@ -20,10 +20,10 @@ class ContactsController <ApplicationController
 
   def update
     @contact = Contact.find(params[:id])
-    if @contact.update(params[:contact])
+    if @contact.update(contact_params)
       head :no_content
     else
-      render :json => @contact.errors, :status => 422
+      render :json => {:errors => @contact.errors}, :status => 422
     end
   end
 
@@ -36,7 +36,7 @@ class ContactsController <ApplicationController
 
   private
   def contact_params
-    params.require(:contact).permit(:name, :phone, :email)
+    params.fetch(:contact).permit(:name, :phone, :email)
   end
 
 end

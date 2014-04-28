@@ -1,0 +1,16 @@
+<h1>Wikipages</h1>
+<div class="col-md-4">
+`   <ul>
+    {{#each contact in controller itemController='contact'}}
+      <li>{{#link-to 'contact' contact}}{{contact.name}}{{/link-to}}
+        <button {{action deleteContact}} class="btn btn-danger">delete</button>
+      </li>
+    {{/each}}
+  </ul>
+</div>
+
+<div class="col-md-4">
+  <p>{{#link-to 'new_contact'}}Add new contact{{/link-to}}</p>
+  {{outlet}}
+</div>
+

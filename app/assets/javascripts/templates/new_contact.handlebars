@@ -1,0 +1,34 @@
+<h1>New Contact</h1>
+<form>
+  <div class="form-group">
+    <label for="name">Name</label>
+    {{#each error in errors.name}}
+      {{error.message}}
+    {{/each}}
+    {{input type="text" id="name" class="form-control" value=name}}
+  </div>
+
+  <div class="form-group">
+    <label for="phone">phone</label>
+    {{#each error in errors.phone}}
+      {{error.message}}
+    {{/each}}
+    {{input type="text" id="phone" class="form-control" value=phone}}
+  </div>
+
+  <div class="form-group">
+    <label for="email">email</label>
+    {{#each error in errors.email}}
+      {{error.message}}
+    {{/each}}
+    {{input type="text" id="email" class="form-control" value=email}}
+  </div>
+
+  <button {{action createContact}} class="btn tbn-primary">Create Contact</button>
+</form>
+
+<p>{{#link-to 'contacts'}}Back{{/link-to}}</p>
+
+<p>{{name}}</p>
+<p>{{phone}}</p>
+<p>{{email}}</p>
