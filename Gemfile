@@ -6,6 +6,8 @@ gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
+gem 'ember-rails'
+gem 'ember-data-source', '~> 1.0.0.beta.7'
 
 
 group :development do
