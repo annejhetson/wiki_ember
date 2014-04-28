@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  root "contacts#index"
-  resources :contacts
+  root "application#index"
+  resources :contacts, :except => [:new, :edit]
 end

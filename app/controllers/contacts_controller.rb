@@ -1,40 +1,36 @@
 class ContactsController <ApplicationController
   def index
     @contacts = Contact.all
+    render :json => @contacts
   end
-  def new
-    @contact = Contact.new
-  end
+
   def create
     @contact = Contact.new(contact_params)
     if @contact.save
-      redirect_to 'show'
+      render :json => @contact, :status => 201
     else
-      render 'new'
+      render :json => @contact.errors, :status => 422
     end
   end
 
   def show
     @contact = Contact.find(params[:id])
-  end
-
-  def edit
-    @contact = Contact.find(params[:id])
+    render :json => @contact
   end
 
   def update
     @contact = Contact.find(params[:id])
-    if @contact.update(contact_params)
-      redirect_to contacts_path
+    if @contact.update(params[:contact])
+      head :no_content
     else
-      render "edit"
+      render :json => @contact.errors, :status => 422
     end
   end
 
   def destroy
     @contact = Contact.find(params[:id])
     @contact.destroy
-    redirect_to contacts_path
+    head :no_content
 
   end
 
